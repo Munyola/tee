@@ -4,6 +4,9 @@ This project contains:
 - Cross-platform Command-line Client for Team Foundation Server and Team Services
 - Team Foundation Server/Team Services SDK for Java
 
+
+
+
 ## What is Team Explorer Everywhere?
 Team Explorer Everywhere is the official TFS plug-in for Eclipse from Microsoft. 
 It works on the operating system of your choice with your favorite Eclipse-based IDE 
