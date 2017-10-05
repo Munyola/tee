@@ -53,6 +53,9 @@ Download the TEE-CLC-*.zip file in the [Releases](https://github.com/Microsoft/t
  * (Linux) `PATH=~/dev/apache-ant-1.9.6/bin:$PATH`
  * (Mac) `PATH=~/dev/apache-ant-1.9.6/bin:$PATH`
     
+*********** Change    
+    
+    
 ### Install the Eclipse Target Environment
 Historically, we use Eclipse 3.5.2 as the base target Eclipse version.
 1. Download and install Eclipse Classic from [Eclipse 3.5.2](http://www.eclipse.org/downloads/packages/release/galileo/sr2). On Windows, you may want to use a third party ZIP tool to unzip the Eclipse archive.
