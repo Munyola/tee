@@ -6,6 +6,9 @@ Team Explorer Everywhere Plug-in for Eclipse
 
 Copyright (c) Microsoft Corporation
 
+
+
+
 All rights reserved. 
 
 MIT License
