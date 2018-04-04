@@ -17,8 +17,8 @@ steps:
     action: 'Build an image'
     dockerFile: '**/Dockerfile'
 #    buildArguments: |
-#     arg1=val1
-#     arg2=val2
+#      arg1=val1
+#      arg2=val2
     defaultContext: true
     imageName: '$(imageName)'
     qualifyImageName: true
@@ -28,7 +28,7 @@ steps:
     includeSourceTags: false
     includeLatestTag: false
     dockerHostEndpoint: '$(dockerHostEndpoint)'
-	enforceDockerNamingConvention: true
+    enforceDockerNamingConvention: true
     memory: 512MB
 
 - task: Docker@0
@@ -36,12 +36,8 @@ steps:
     containerregistrytype: 'Container Registry'
     dockerRegistryConnection: '$(dockerRegistryConnectionEndpoint)'
     action: 'Push an image'
-	imageName: '$(imageName)'
+    imageName: '$(imageName)'
     includeSourceTags: false
     includeLatestTag: false
     imageDigestFile: 'repository_digest'
     dockerHostEndpoint: '$(dockerHostEndpoint)'
-
-
-
-
