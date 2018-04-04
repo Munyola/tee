@@ -16,15 +16,15 @@ steps:
     dockerRegistryConnection: '$(dockerRegistryConnectionEndpoint)'
     action: 'Build an image'
     dockerFile: '**/Dockerfile'
-    buildArguments: |
+#    buildArguments: |
 #     arg1=val1
 #     arg2=val2
 	defaultContext: true
 	imageName: '$(imageName)'
 	qualifyImageName: true
-    additionalImageTags: |
- #    Tag1
- #    Tag2
+#    additionalImageTags: |
+#     Tag1
+#     Tag2
     includeSourceTags: false
     includeLatestTag: false
     dockerHostEndpoint: '$(dockerHostEndpoint)'
