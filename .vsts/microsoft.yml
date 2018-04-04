@@ -1,6 +1,6 @@
-resources:
-- repo: self
-
+#resources:
+#- repo: self
+#
 queue:
   name: Hosted VS2017
 
