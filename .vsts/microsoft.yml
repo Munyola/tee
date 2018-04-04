@@ -19,12 +19,12 @@ steps:
 #    buildArguments: |
 #     arg1=val1
 #     arg2=val2
-	defaultContext: true
-	imageName: '$(imageName)'
-	qualifyImageName: true
+    defaultContext: true
+    imageName: '$(imageName)'
+    qualifyImageName: true
 #    additionalImageTags: |
-#     Tag1
-#     Tag2
+#      Tag1
+#      Tag2
     includeSourceTags: false
     includeLatestTag: false
     dockerHostEndpoint: '$(dockerHostEndpoint)'
