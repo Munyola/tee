@@ -5,9 +5,14 @@ queue:
   name: Hosted VS2017
 
 variables:
-  dockerRegistryConnectionEndpoint: '69a1a8df-4cb8-46ce-9e6e-e8197ff93ded'    # VSTS service connection endpoint "Docker Registry"
-  dockerHostEndpoint: '3f5ecfa0-cdda-4405-aad7-e3e5cc508d2a'                  # VSTS service connection endpoint "Docker Host"
+#  dockerRegistryConnectionEndpoint: '69a1a8df-4cb8-46ce-9e6e-e8197ff93ded'    # VSTS service connection endpoint "Docker Registry"
+#  dockerHostEndpoint: '3f5ecfa0-cdda-4405-aad7-e3e5cc508d2a'                  # VSTS service connection endpoint "Docker Host"
+  dockerRegistryConnectionEndpoint: ''    # VSTS service connection endpoint "Docker Registry"
+  dockerHostEndpoint: ''                  # VSTS service connection endpoint "Docker Host"
   imageName: '$(Build.Repository.Name):$(Build.BuildId)'
+  qualifyImageName: true
+  enforceDockerNamingConvention: true
+  defaultContext: true
 
 steps:
 - task: Docker@0
@@ -17,19 +22,18 @@ steps:
     action: 'Build an image'
     dockerFile: '**/Dockerfile'
 #    buildArguments: |
-#      arg1=val1
-#      arg2=val2
-    defaultContext: true
+#      HTTP_PROXY=http://1.192.168.254
+#      BUILD_NUMBER=$(Build.BuildNumber)
+    defaultContext: $defaultContext)
     imageName: '$(imageName)'
-    qualifyImageName: true
+    qualifyImageName: $(qualifyImageName)
 #    additionalImageTags: |
 #      Tag1
 #      Tag2
     includeSourceTags: false
     includeLatestTag: false
     dockerHostEndpoint: '$(dockerHostEndpoint)'
-    enforceDockerNamingConvention: true
-    memory: 512MB
+    enforceDockerNamingConvention: $(enforceDockerNamingConvention)
 
 - task: Docker@0
   inputs:
@@ -37,7 +41,8 @@ steps:
     dockerRegistryConnection: '$(dockerRegistryConnectionEndpoint)'
     action: 'Push an image'
     imageName: '$(imageName)'
+    qualifyImageName: $(qualifyImageName)
     includeSourceTags: false
     includeLatestTag: false
-    imageDigestFile: 'repository_digest'
     dockerHostEndpoint: '$(dockerHostEndpoint)'
+    enforceDockerNamingConvention: $(enforceDockerNamingConvention)
