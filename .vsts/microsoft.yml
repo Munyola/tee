@@ -1,18 +1,27 @@
-#resources:
-#- repo: self
-#
+# Container
+# Build, tag, push, or run Docker images, or run a Docker command.
+# More Information on https://go.microsoft.com/fwlink/?linkid=848006
+# CodeLaunch YAML help: https://aka.ms/yaml
+
 queue:
   name: Hosted VS2017
 
 variables:
-#  dockerRegistryConnectionEndpoint: '69a1a8df-4cb8-46ce-9e6e-e8197ff93ded'    # VSTS service connection endpoint "Docker Registry"
-#  dockerHostEndpoint: '3f5ecfa0-cdda-4405-aad7-e3e5cc508d2a'                  # VSTS service connection endpoint "Docker Host"
-  dockerRegistryConnectionEndpoint: ''    # VSTS service connection endpoint "Docker Registry"
-  dockerHostEndpoint: ''                  # VSTS service connection endpoint "Docker Host"
-  imageName: '$(Build.Repository.Name):$(Build.BuildId)'
-  qualifyImageName: true
-  enforceDockerNamingConvention: true
-  defaultContext: true
+  dockerRegistryConnectionEndpoint: ''                      # The unique name or the GUID Id of VSTS service connection endpoint
+                                                            # for Docker registry. Required if the step needs to authenticate
+                                                            # with a registry.
+                                                            
+  dockerHostEndpoint: ''                                    # The unique name or the GUID Id of VSTS service connection endpoint
+                                                            # for Docker host. Defaults to the agent's host.
+                                                            
+  imageName: '$(Build.Repository.Name):$(Build.BuildId)'    # Name of the Docker image to build and push
+  
+  qualifyImageName: true                                    # Qualify the image name with the Docker registry connection's hostname 
+                                                            
+  enforceDockerNamingConvention: true                       # The docker image name will be modified to follow Docker naming
+                                                            # convention. Converts upper case character to lower case and
+                                                            # removes spaces in image name.
+  defaultContext: true                                      # Set the build context to the directory that contains the Docker file.
 
 steps:
 - task: Docker@0
