@@ -42,6 +42,9 @@ steps:
     action: 'Push an image'
     imageName: '$(imageName)'
     qualifyImageName: $(qualifyImageName)
+#    additionalImageTags: |
+#      Tag3
+#      Tag4
     includeSourceTags: false
     includeLatestTag: false
     dockerHostEndpoint: '$(dockerHostEndpoint)'
