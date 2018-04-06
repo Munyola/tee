@@ -3,7 +3,7 @@
 # https://aka.ms/yaml
 
 queue:
-  name: Hosted VS2017                                       # or Hosted Linux, Default
+  name: Hosted Linuz Preview                                       # or Hosted Linux, Default
 
 #variables:
 #  system.debug: true
