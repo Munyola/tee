@@ -13,7 +13,7 @@ steps:
   inputs:
     action: 'Build an image'                                # or Tag images, Push an image, Push images, Run an image, Run a Docker command
     containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker Registry Fake'                              # The unique name or the GUID Id of VSTS service connection endpoint
+    dockerRegistryEndpoint: ''                              # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for the Docker registry. Required if the step needs to authenticate
                                                             # with a registry.
     dockerFile: '**/Dockerfile' 
@@ -28,7 +28,7 @@ steps:
 #      Tag2
     includeSourceTags: false
     includeLatestTag: false
-    dockerHostEndpoint: 'Docker Host Fake'                                  # The unique name or the GUID Id of VSTS service connection endpoint
+    dockerHostEndpoint: ''                                  # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for the Docker host. Defaults to the agent's host.
     enforceDockerNamingConvention: true                     # The docker image name will be modified to follow Docker naming
                                                             # convention. Converts upper case character to lower case and
@@ -38,7 +38,7 @@ steps:
   inputs:
     action: 'Push an image'                                 # or Build an image, Tag images, Push images, Run an image, Run a Docker command
     containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'Docker Registry Fake'                              # The unique name or the GUID Id of VSTS service connection endpoint
+    dockerRegistryEndpoint: ''                              # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for Docker registry. Required if the step needs to authenticate
                                                             # with a registry.
     imageName: '$(Build.Repository.Name):$(Build.BuildId)'  # Name of the Docker image to push
@@ -48,7 +48,7 @@ steps:
 #      Tag4
     includeSourceTags: false
     includeLatestTag: false
-    dockerHostEndpoint: 'Docker Host Fake'                                  # The unique name or the GUID Id of VSTS service connection endpoint
+    dockerHostEndpoint: ''                                  # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for the Docker host. Defaults to the agent's host.
     enforceDockerNamingConvention: true                     # The docker image name will be modified to follow Docker naming
                                                             # convention. Converts upper case character to lower case and
