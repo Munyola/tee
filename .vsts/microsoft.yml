@@ -7,11 +7,11 @@ queue:
   name: Hosted VS2017
 
 variables:
-  dockerRegistryConnectionEndpoint: ''                      # The unique name or the GUID Id of VSTS service connection endpoint
+  dockerRegistryConnectionEndpoint: 'Docker Registry Fake'  # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for Docker registry. Required if the step needs to authenticate
                                                             # with a registry.
                                                             
-  dockerHostEndpoint: ''                                    # The unique name or the GUID Id of VSTS service connection endpoint
+  dockerHostEndpoint: 'Docker Host Fake'                    # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for Docker host. Defaults to the agent's host.
                                                             
   imageName: '$(Build.Repository.Name):$(Build.BuildId)'    # Name of the Docker image to build and push
