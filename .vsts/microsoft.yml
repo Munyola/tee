@@ -7,54 +7,54 @@ queue:
   name: Hosted VS2017
 
 variables:
-  Parameters.dockerRegistryEndpoint: 'Docker Registry Fake'  # The unique name or the GUID Id of VSTS service connection endpoint
+  dockerRegistryEndpoint: 'Docker Registry Fake'  # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for Docker registry. Required if the step needs to authenticate
                                                             # with a registry.
                                                             
-  Parameters.dockerHostEndpoint: 'Docker Host Fake'                    # The unique name or the GUID Id of VSTS service connection endpoint
+  dockerHostEndpoint: 'Docker Host Fake'                    # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for Docker host. Defaults to the agent's host.
                                                             
-  Parameters.imageName: '$(Build.Repository.Name):$(Build.BuildId)'    # Name of the Docker image to build and push
+  imageName: '$(Build.Repository.Name):$(Build.BuildId)'    # Name of the Docker image to build and push
   
-  Parameters.qualifyImageName: true                                    # Qualify the image name with the Docker registry connection's hostname 
+  qualifyImageName: true                                    # Qualify the image name with the Docker registry connection's hostname 
                                                             
-  Parameters.enforceDockerNamingConvention: true                       # The docker image name will be modified to follow Docker naming
+  enforceDockerNamingConvention: true                       # The docker image name will be modified to follow Docker naming
                                                             # convention. Converts upper case character to lower case and
                                                             # removes spaces in image name.
-  Parameters.defaultContext: true                                      # Set the build context to the directory that contains the Docker file.
+  defaultContext: true                                      # Set the build context to the directory that contains the Docker file.
 
 steps:
 - task: Docker@0
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerRegistryConnection: '$(Parameters.dockerRegistryEndpoint)'
+    dockerRegistryConnection: '$(dockerRegistryEndpoint)'
     action: 'Build an image'
     dockerFile: '**/Dockerfile'
 #    buildArguments: |
 #      HTTP_PROXY=http://1.192.168.254
 #      BUILD_NUMBER=$(Build.BuildNumber)
-    defaultContext: $(Parameters.defaultContext)
-    imageName: '$(Parameters.imageName)'
-    qualifyImageName: $(Parameters.qualifyImageName)
+    defaultContext: $(defaultContext)
+    imageName: '$(imageName)'
+    qualifyImageName: $(qualifyImageName)
 #    additionalImageTags: |
 #      Tag1
 #      Tag2
     includeSourceTags: false
     includeLatestTag: false
-    dockerHostEndpoint: '$(Parameters.dockerHostEndpoint)'
-    enforceDockerNamingConvention: $(Parameters.enforceDockerNamingConvention)
+    dockerHostEndpoint: '$(dockerHostEndpoint)'
+    enforceDockerNamingConvention: $(enforceDockerNamingConvention)
 
 - task: Docker@0
   inputs:
     containerregistrytype: 'Container Registry'
-    dockerRegistryConnection: '$(Parameters.dockerRegistryEndpoint)'
+    dockerRegistryConnection: '$(dockerRegistryEndpoint)'
     action: 'Push an image'
-    imageName: '$(Parameters.imageName)'
-    qualifyImageName: $(Parameters.qualifyImageName)
+    imageName: '$(imageName)'
+    qualifyImageName: $(qualifyImageName)
 #    additionalImageTags: |
 #      Tag3
 #      Tag4
     includeSourceTags: false
     includeLatestTag: false
-    dockerHostEndpoint: '$(Parameters.dockerHostEndpoint)'
-    enforceDockerNamingConvention: $(Parameters.enforceDockerNamingConvention)
+    dockerHostEndpoint: '$(dockerHostEndpoint)'
+    enforceDockerNamingConvention: $(enforceDockerNamingConvention)
