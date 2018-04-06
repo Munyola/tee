@@ -6,7 +6,7 @@
 queue:
   name: Hosted VS2017
 
-Parameters:
+variables:
   Parameters.dockerRegistryEndpoint: 'Docker Registry Fake'  # The unique name or the GUID Id of VSTS service connection endpoint
                                                             # for Docker registry. Required if the step needs to authenticate
                                                             # with a registry.
