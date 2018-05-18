@@ -7,6 +7,16 @@ queue:
 
 #variables:
 #  system.debug: true
+resources:
+- repo: self
+
+queue:
+  name: Hosted VS2017
+
+variables:
+  dockerRegistryConnectionEndpoint: '69a1a8df-4cb8-46ce-9e6e-e8197ff93ded'    # VSTS service connection endpoint "Docker Registry"
+  dockerHostEndpoint: '3f5ecfa0-cdda-4405-aad7-e3e5cc508d2a'                  # VSTS service connection endpoint "Docker Host"
+  imageName: '$(Build.Repository.Name):$(Build.BuildId)'
 
 steps:
 - task: Docker@0
@@ -53,3 +63,37 @@ steps:
     enforceDockerNamingConvention: true                     # The docker image name will be modified to follow Docker naming
                                                             # convention. Converts upper case character to lower case and
                                                             # removes spaces in the image name.
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: '$(dockerRegistryConnectionEndpoint)'
+    action: 'Build an image'
+    dockerFile: '**/Dockerfile'
+    buildArguments: |
+#     arg1=val1
+#     arg2=val2
+	defaultContext: true
+	imageName: '$(imageName)'
+	qualifyImageName: true
+    additionalImageTags: |
+ #    Tag1
+ #    Tag2
+    includeSourceTags: false
+    includeLatestTag: false
+    dockerHostEndpoint: '$(dockerHostEndpoint)'
+	enforceDockerNamingConvention: true
+    memory: 512MB
+
+- task: Docker@0
+  inputs:
+    containerregistrytype: 'Container Registry'
+    dockerRegistryConnection: '$(dockerRegistryConnectionEndpoint)'
+    action: 'Push an image'
+	imageName: '$(imageName)'
+    includeSourceTags: false
+    includeLatestTag: false
+    imageDigestFile: 'repository_digest'
+    dockerHostEndpoint: '$(dockerHostEndpoint)'
+
+
+
+
+
