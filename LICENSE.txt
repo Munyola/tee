@@ -2,7 +2,7 @@ Team Explorer Everywhere Plug-in for Eclipse
 
 dsasga
 asasads bsdb erhwehw
-dbasdbas g
+dbasdb
 
 
 Copyright (c) Microsoft Corporation
