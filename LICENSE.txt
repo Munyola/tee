@@ -1,5 +1,5 @@
 Team Explorer Everywhere Plug-in for Eclipse
- c z
+ c zvc   ba
 
 Copyright (c) Microsoft Corporation
 
