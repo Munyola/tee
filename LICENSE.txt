@@ -1,5 +1,5 @@
 Team Explorer Everywhere Plug-in for Eclipse
- dadsvasvads c z
+ dadsv as va ds c z
 
 Copyright (c) Microsoft Corporation
 
