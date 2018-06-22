@@ -2,8 +2,6 @@ queue:
 
   name: Default
 
-  condition: succeeded()
-
 steps:
 
 - script: |
