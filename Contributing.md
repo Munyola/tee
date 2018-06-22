@@ -1,6 +1,6 @@
 # TEE Contributor Guide
 
-dsvgasvas
+   dsvgasvas
 
 This instructions below will help you get your development environment setup so that you can contribute to this repository.
 
