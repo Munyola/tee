@@ -2,6 +2,7 @@ We’re using an open localization platform to regularly integrate community fee
 
 
 
+rbgas qrgqrg
 
 ##Where are our translations? 
 * Go to [www.transifex.com](https://www.transifex.com/), sign in if you have a **Transifex** account, sign up for an account if you don’t have one.
