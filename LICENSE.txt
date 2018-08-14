@@ -1,5 +1,5 @@
 Team Explorer Everywhere Plug-in for Eclipse
- c z       aba dvasvava
+      aba dvasvava
 
 Copyright (c) Microsoft Corporation
 
