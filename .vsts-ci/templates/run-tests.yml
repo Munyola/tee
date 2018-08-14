@@ -1,0 +1,9 @@
+steps:
+- bash: tox -e $TOX_TESTENV -- -m unit --junit-xml=junit/unittest.xml
+  displayName: Tox run unit tests
+
+- bash: tox -e $TOX_TESTENV -- -m integration -n 4 --duration=5 -k "not test_install" --junit-xml=junit/integration-group0.xml
+  displayName: Tox run integration tests (Group 0)
+
+- bash: tox -e $TOX_TESTENV -- -m integration -n 4 --duration=5 -k "test_install" --junit-xml=junit/integration-group1.xml
+  displayName: Tox run integration tests (Group 1)

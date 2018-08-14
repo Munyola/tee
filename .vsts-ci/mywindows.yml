@@ -1,0 +1,101 @@
+trigger:
+  branches:
+    include:
+    - master
+    - topic/vsts-build # TODO
+  paths:
+    include:
+    - /
+    exclude:
+    - /.github/
+    - /docs/
+    - /NEWS.rst
+    - /README.rst
+
+phases:
+- phase: Linting
+  queue: Hosted Linux Preview
+
+  steps:
+  - task: UsePythonVersion@0
+    displayName: Use Python 2.7
+    inputs:
+      versionSpec: '2.7'
+
+  - template: templates/install-dependencies.yml
+
+  - bash: tox -e lint-py2
+    displayName: Lint with Python 2
+
+  - task: UsePythonVersion@0
+    displayName: Use Python 3 latest
+    inputs:
+      versionSpec: '3'
+
+  - template: templates/install-dependencies.yml
+
+  - bash: tox -e lint-py3
+    displayName: Lint with Python 3
+
+  - bash: tox -e mypy
+    displayName: mypy
+
+- phase: Test
+  queue:
+    name: Hosted Linux Preview
+    parallel: 5
+    matrix:
+      Python27:
+        python.version: '2.7'
+        tox.testEnv: py27
+      Python34:
+        python.version: '3.4'
+        tox.testEnv: py34
+      Python35:
+        python.version: '3.5'
+        tox.testEnv: py35
+      Python36:
+        python.version: '3.6'
+        tox.testEnv: py36
+      Python37:
+        python.version: '3.7'
+        tox.testEnv: py37
+
+  steps:
+  - task: UsePythonVersion@0
+    displayName: Use Python $(python.version)
+    inputs:
+      versionSpec: '$(python.version)'
+
+  - template: templates/install-dependencies.yml
+  - template: templates/run-tests.yml
+
+  - task: PublishTestResults@2
+    displayName: Publish Test Results
+    inputs:
+      testResultsFiles: junit/*.xml
+      testRunTitle: 'Python $(python.version)'
+    condition: succeededOrFailed()
+
+- phase: Package
+  queue: Hosted Linux Preview
+
+  steps:
+  - task: UsePythonVersion@0
+    displayName: Use Python 3 latest
+    inputs:
+      versionSpec: '3'
+
+  - template: templates/install-dependencies.yml
+
+  - bash: tox -e packaging
+    displayName: Run Tox packaging
+
+  - bash: python setup.py sdist
+    displayName: Create sdist
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: dist'
+    inputs:
+      pathtoPublish: dist
+      artifactName: dist
