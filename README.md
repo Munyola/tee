@@ -4,7 +4,7 @@ This project contains:
 - Cross-platform Command-line Client for Team Foundation Server and Team Services
 - Team Foundation Server/Team Services SDK for Java
 
-
+rshshs
 
 
 ## What is Team Explorer Everywhere?
